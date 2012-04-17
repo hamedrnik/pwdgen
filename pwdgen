@@ -1,0 +1,26 @@
+#!/bin/bash
+############################################################
+#
+#	Password Generator (pwdGen)
+#	Developed by BijanEbrahimi - 2012
+#		<myopensourceprojects@gmail.com>
+#		Released Under GPL v.3 License
+#	For More information please README ;)
+#
+############################################################
+
+echo -n "Please Enter your fixed String: "
+read STRING
+START=""
+while [[ ! $START =~ ^[0-9]+$ ]]; do
+    	echo -n "Please Enter Begining Point [0-43]: "
+   	read START
+done
+END=""
+while [[ ! $END =~ ^[0-9]+$ ]]; do
+    	echo -n "Please Enter Ending Point [1-44]: "
+    	read END
+done
+
+QUERY=$(echo $STRING | md5sum | grep -o "[a-z0-9]*" | base64 )
+echo "PASSWORD: ${QUERY:$START:$END}"
