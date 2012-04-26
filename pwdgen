@@ -11,6 +11,10 @@
 
 echo -n "Please Enter your fixed String: "
 read STRING
+SALT=""
+echo -n "Please Enter a Salt String (e.g DOMAIN name): "
+read SALT
+
 START=""
 while [[ ! $START =~ ^[0-9]+$ ]]; do
     	echo -n "Please Enter Begining Point [0-43]: "
@@ -22,5 +26,7 @@ while [[ ! $END =~ ^[0-9]+$ ]]; do
     	read END
 done
 
-QUERY=$(echo $STRING | md5sum | grep -o "[a-z0-9]*" | base64 )
+QUERY=$(echo "$STRING$SALT" | md5sum | grep -o "[a-z0-9]*" | base64 )
+# or $(echo "$STRING$SALT" | openssl md5 | base64 ) for shorter version
+
 echo "PASSWORD: ${QUERY:$START:$END}"

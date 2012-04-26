@@ -1,9 +1,10 @@
-pwdGen v.1
+pwdGen v.1.1
 
 TABLE OF CONTENTS
 	1. USAGE
 	2. LICENSE
 	3. TODOs
+	4. CHANGEOG
 
 1) USAGE
   pwdGen is a simpel bash script. to run it you  need to 
@@ -18,22 +19,36 @@ if you surrently are in the same path as pwdgen file:
 	OR
 	$ bash pwdgen
 
-  it then asks you for 3 parameter. a FIXED string, and 
-two numbers. the FIXED string can be simply a name or
-something that your are sure to remember it. it can be
-your name but try to be a little Creative about that ;)
+  it then asks you for 4 parameter . a FIXED string, a 
+salt string and two numbers. the FIXED string can be 
+simply a name or something that your are sure to remember 
+it and it must be a secret you taking it to grave. i mean
+no one should know this except you! it can be your name 
+(case sensetive) but try to be a little Creative about that.
+
+now time to enter the SALT string. this SALT is used to 
+change your password with the same parameters for each
+place you use it. for example if you want to create a password
+for your GMAIL account, your salt string can be "gmail.com".
 now this script will create a very long (44 chars) coded
 string including numbers and characters (both uppercase and
-lower case). 
+lower case).
+
+  WARNING: you can ignore the SALT string by pressing just ENTER!
+it is necessary if you already created your passwords with
+version 1.0 of this script which was no supporting SALTs!
 
   the first number indicates where to cut this coded string
-and the second string indicates how much character you need.
+and the second string indicates how much characters you need.
 you have to remember this two numbers along with your name 
 (case sensetive).
 
 TIP: you can use different numbers for different accounts
-you are creating this passwords for. but be aware that the
-sum of your two numbers must be exceed 49 (LIMITED).
+you are creating this passwords for but there is no need
+if you enter the SALT string properly.
+
+  NOTE: be aware that the sum of your two numbers must not
+exceed 49 (LIMITED).
 
 2) LICENSE
   pwdgen is developed under GPL v3.0 or later. if dont know
@@ -47,3 +62,6 @@ path as this script is.
 	it is a password so anyone near the monitor can not 
 	be able to see what you are typing.
 
+4) CHANGELOG
+	v1.1
+		* added SALT string to midify generated password
