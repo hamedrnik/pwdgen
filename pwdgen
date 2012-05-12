@@ -1,7 +1,7 @@
 #!/bin/bash
 ############################################################
 #
-#	Password Generator (pwdGen)
+#	Password Generator (pwdGen) v1.2
 #	Developed by BijanEbrahimi - 2012
 #		<myopensourceprojects@gmail.com>
 #		Released Under GPL v.3 License
@@ -9,8 +9,17 @@
 #
 ############################################################
 
-echo -n "Please Enter your fixed String: "
-read STRING
+STRING=""
+STRING_CONFIRM=" "
+while [[ ! $STRING == $STRING_CONFIRM ]]; do
+	echo -n "Please Enter your fixed String [for safty it'll be invisible]: "
+	read -s STRING
+	echo -en "\n"
+	echo -n "Confirm: "
+	read -s STRING_CONFIRM
+	echo -e "\n"
+done
+
 SALT=""
 echo -n "Please Enter a Salt String (e.g DOMAIN name): "
 read SALT

@@ -1,4 +1,4 @@
-pwdGen v.1.1
+pwdGen v.1.2
 
 TABLE OF CONTENTS
 	1. USAGE
@@ -8,7 +8,7 @@ TABLE OF CONTENTS
 
 1) USAGE
   pwdGen is a simpel bash script. to run it you  need to 
-make the source file executable. you can achieve that by
+make the source file  executable. you can achieve that by
 running the following command on your terminal:
 	$ chmod +x <PATH_TO_SCRIPT>/pwdgen
 
@@ -25,6 +25,13 @@ simply a name or something that your are sure to remember
 it and it must be a secret you taking it to grave. i mean
 no one should know this except you! it can be your name 
 (case sensetive) but try to be a little Creative about that.
+yo have to enter this text twice (confirmation) to avoid any
+mistakes!
+
+NOTE: for abviouse SECURITY reasons, you can not see what
+you are typing. it is like entering password in unix-like-systems.
+so go ahead and enter your fixed string twice, if both matche
+together, you will be going to next step.
 
 now time to enter the SALT string. this SALT is used to 
 change your password with the same parameters for each
@@ -35,8 +42,8 @@ string including numbers and characters (both uppercase and
 lower case).
 
   WARNING: you can ignore the SALT string by pressing just ENTER!
-it is necessary if you already created your passwords with
-version 1.0 of this script which was no supporting SALTs!
+iut it is necessary if you already created your passwords with
+version 1.0 of this script which did not support SALTs!
 
   the first number indicates where to cut this coded string
 and the second string indicates how much characters you need.
@@ -52,16 +59,21 @@ exceed 49 (LIMITED).
 
 2) LICENSE
   pwdgen is developed under GPL v3.0 or later. if dont know
-what is it or like to know more, visit this URL:
+what it is or like to know more, visit this URL:
 	http://gnu.org/licenses/gpl-3.0.txt
 or read the 'gpl-3.0.txt' file that should be in the same
 path as this script is.
 
 3) TODOs
-	* it would be nicer to get the FIXED STRING like
-	it is a password so anyone near the monitor can not 
-	be able to see what you are typing.
+  it is anoying to enter FIXED string twice everytime. but it is
+necessary to check that if you are creating password. so it would be great 
+to have a parameter to tell if you are willing to create a password for
+a first time or just trying to recover it.
 
 4) CHANGELOG
 	v1.1
 		* added SALT string to midify generated password
+	v1.2
+		* typing FIXED string is done invisibly now
+		* added FIXED string confirmation in case of creating new password.
+
