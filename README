@@ -1,4 +1,4 @@
-pwdGen v.1.2
+pwdGen v.1.3
 
 TABLE OF CONTENTS
 	1. USAGE
@@ -76,4 +76,5 @@ a first time or just trying to recover it.
 	v1.2
 		* typing FIXED string is done invisibly now
 		* added FIXED string confirmation in case of creating new password.
-
+	v1.3 	
+		* repeatedly create password using different salt strings till you say enough :)

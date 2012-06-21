@@ -1,7 +1,7 @@
 #!/bin/bash
 ############################################################
 #
-#	Password Generator (pwdGen) v1.2
+#	Password Generator (pwdGen) v1.3
 #	Developed by BijanEbrahimi - 2012
 #		<myopensourceprojects@gmail.com>
 #		Released Under GPL v.3 License
@@ -20,22 +20,29 @@ while [[ ! $STRING == $STRING_CONFIRM ]]; do
 	echo -e "\n"
 done
 
-SALT=""
-echo -n "Please Enter a Salt String (e.g DOMAIN name): "
-read SALT
+CONTINUE="y";
+while [[ ! $CONTINUE == "n" ]]; do
 
-START=""
-while [[ ! $START =~ ^[0-9]+$ ]]; do
-    	echo -n "Please Enter Begining Point [0-43]: "
-   	read START
-done
-END=""
-while [[ ! $END =~ ^[0-9]+$ ]]; do
-    	echo -n "Please Enter Ending Point [1-44]: "
-    	read END
-done
+	SALT=""
+	echo -n "Please Enter a Salt String (e.g DOMAIN name): "
+	read SALT
 
-QUERY=$(echo "$STRING$SALT" | md5sum | grep -o "[a-z0-9]*" | base64 )
-# or $(echo "$STRING$SALT" | openssl md5 | base64 ) for shorter version
+	START=""
+	while [[ ! $START =~ ^[0-9]+$ ]]; do
+	    	echo -n "Please Enter Begining Point [0-43]: "
+	   	read START
+	done
+	END=""
+	while [[ ! $END =~ ^[0-9]+$ ]]; do
+	    	echo -n "Please Enter Ending Point [1-44]: "
+	    	read END
+	done
+	
+	QUERY=$(echo "$STRING$SALT" | md5sum | grep -o "[a-z0-9]*" | base64 )
+	# or $(echo "$STRING$SALT" | openssl md5 | base64 ) for shorter version
 
-echo "PASSWORD: ${QUERY:$START:$END}"
+	echo "PASSWORD: ${QUERY:$START:$END}"
+	
+	echo -n "Recover/Create another password using different salt string? (Y/n)"
+	read CONTINUE
+done;
