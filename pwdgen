@@ -1,13 +1,23 @@
 #!/bin/bash
 ############################################################
 #
-#	Password Generator (pwdGen) v1.3
+#	Password Generator (pwdGen) v1.4
 #	Developed by BijanEbrahimi - 2012
 #		<myopensourceprojects@gmail.com>
 #		Released Under GPL v.3 License
 #	For More information please README ;)
 #
 ############################################################
+VERSION=1.4
+echo -n "[Warning]: till pwdgen v1.3 (currently $VERSION) part of equation was 'substr(base64(md5(fixed_string + salt_string + newLine_character)),start_point,length)'. we removed newline_character from equation (in v1.4) so you can now recover your password using online tools too. now if you used old versions of pwdgen to create password, PRESS (n). do you want to use new equation? (Y/n)"
+read NEW_ALGORITHM;
+echo "";
+if [[ $NEW_ALGORITHM == "n" ]];
+then
+	echo "OLD equation selected"
+else
+	echo "NEW equation selected"
+fi
 
 STRING=""
 STRING_CONFIRM=" "
@@ -38,11 +48,18 @@ while [[ ! $CONTINUE == "n" ]]; do
 	    	read END
 	done
 	
-	QUERY=$(echo "$STRING$SALT" | md5sum | grep -o "[a-z0-9]*" | base64 )
-	# or $(echo "$STRING$SALT" | openssl md5 | base64 ) for shorter version
+	
+	if [[ $NEW_ALGORITHM == "n" ]];
+	then
+		QUERY=$(echo "$STRING$SALT" | md5sum | grep -o "[a-z0-9]*" | base64 )
+		# or $(echo "$STRING$SALT" | openssl md5 | base64 ) for shorter version
+	else
+		QUERY=$(echo -n "$STRING$SALT" | md5sum | grep -o "[a-z0-9]*" | base64 )
+	fi;
 
 	echo "PASSWORD: ${QUERY:$START:$END}"
 	
 	echo -n "Recover/Create another password using different salt string? (Y/n)"
 	read CONTINUE
 done;
+

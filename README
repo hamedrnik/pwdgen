@@ -1,4 +1,4 @@
-pwdGen v.1.3
+pwdGen v.1.4
 
 TABLE OF CONTENTS
 	1. USAGE
@@ -42,7 +42,7 @@ string including numbers and characters (both uppercase and
 lower case).
 
   WARNING: you can ignore the SALT string by pressing just ENTER!
-iut it is necessary if you already created your passwords with
+but it is necessary if you already created your passwords with
 version 1.0 of this script which did not support SALTs!
 
   the first number indicates where to cut this coded string
@@ -56,6 +56,17 @@ if you enter the SALT string properly.
 
   NOTE: be aware that the sum of your two numbers must not
 exceed 49 (LIMITED).
+
+  WARNING: from version 1.4 we removed newline character from
+equation, cause with this way (new EQUATION) now you can
+recover your password when this script is not around using
+online encrypting tools such like:
+         http://cybermachine.awardspace.com/encryption.php
+to do this, enter your fixed string and sal string (without
+spaces between) and select 'MD5 crypt' and press go! after
+that select 'base64 Decrypt' and press go. the result is
+you raw password. according to you begining point and length
+of your password, cut characters and bingo ;)
 
 2) LICENSE
   pwdgen is developed under GPL v3.0 or later. if dont know
@@ -76,5 +87,10 @@ a first time or just trying to recover it.
 	v1.2
 		* typing FIXED string is done invisibly now
 		* added FIXED string confirmation in case of creating new password.
-	v1.3 	
+	v1.3
 		* repeatedly create password using different salt strings till you say enough :)
+	v1.4
+		* remove newline character from equation, now you need to select
+		  old algorithm to recover your already created password in pervious version.
+		* careted password using new algorithm, now can easily be recovered using online tools
+		  (see WARNING section in 'USAGE' above)
